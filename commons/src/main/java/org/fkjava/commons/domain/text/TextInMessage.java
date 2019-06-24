@@ -9,8 +9,8 @@ import org.fkjava.commons.domain.InMessage;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@XmlRootElement(name = "xml") // 指定XML的根元素名称
-@XmlAccessorType(XmlAccessType.FIELD) // 指定属性的访问方式为字段
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "xml")
 public class TextInMessage extends InMessage {
 
 	/**
@@ -22,7 +22,7 @@ public class TextInMessage extends InMessage {
 	private String content;
 
 	public TextInMessage() {
-		super("text");
+		super.setMsgType("text");
 	}
 
 	public String getContent() {
@@ -33,6 +33,7 @@ public class TextInMessage extends InMessage {
 		this.content = content;
 	}
 
+	// 如果想要打印一些有含义的信息出来，必须要重写此方法，否则只能打印一个内存地址
 	@Override
 	public String toString() {
 		return "TextInMessage [content=" + content + ", getToUserName()=" + getToUserName() + ", getFromUserName()="

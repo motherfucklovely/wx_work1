@@ -2,7 +2,7 @@ package org.fkjava.commons.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AccessToken {
+public class ResponseToken extends ResponseMessage {
 
 	@JsonProperty("access_token")
 	private String accessToken;

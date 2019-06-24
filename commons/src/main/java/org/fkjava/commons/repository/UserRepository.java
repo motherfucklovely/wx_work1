@@ -4,15 +4,13 @@ import org.fkjava.commons.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-//Spring Data会自动根据此主键生成实例
-//并且这个实例会放入Spring的容器里面，可以随时获取使用
-@Repository
-// 继承JpaRepository以后，会得到大部分的CRUD操作方法，基本上不需要写代码可以完成数据库的操作
-// <User, String> 第一个参数指定哪个类的对象（对应哪个表），第二个参数指定主键的数据类型（@Id注解）
+@Repository // 此时Spring Data JPA会自动创建此接口的实现类，并且产生实例放入容器中
+// extends JpaRepository : 表示继承Spring Data JPA提供的基本CRUD接口，基本上大部分的操作都已经提供
+// <User, String> ： 第一个参数表示哪个类的数据（对应哪个表），第二个参数则表示表里面主键的数据类型（@Id注解）
 public interface UserRepository extends JpaRepository<User, String> {
 
-	// Spring Data会自动根据这个方法名生成一个查询语句
-	// select * from wx_user where open_id = ?
-	// 并且还会自动把查询得到的结果，转换为User对象
+	// 不需要实现此方法，Spring会自动实现（利用动态代理技术实现）
+	// 最终生成的SQL语句 : select * from wx_user where open_id = ?
+	// 并且会自动把查询结果转换为User类的实例
 	User findByOpenId(String openId);
 }
