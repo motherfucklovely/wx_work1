@@ -9,10 +9,9 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.nio.charset.Charset;
 import java.util.concurrent.CompletableFuture;
-
+import org.fkjava.commons.service.TokenManager;
 import org.fkjava.commons.domain.User;
 import org.fkjava.commons.domain.text.TextOutMessage;
-import org.fkjava.commons.service.TokenManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,7 @@ public class WeixinProxy {
 	private static final Logger LOG = LoggerFactory.getLogger(WeixinProxy.class);
 	@Autowired
 	private TokenManager tokenManager;
+	
 	@Autowired
 	private ObjectMapper objectMapper;
 
@@ -37,9 +37,12 @@ public class WeixinProxy {
 	public User getUser(String account, String openId) {
 		String token = this.tokenManager.getToken(account);
 		String url = "https://api.weixin.qq.com/cgi-bin/user/info"//
-				+ "?access_token=" + token+ "&openid=" + openId+ "&lang=zh_CN";
-		HttpRequest request = HttpRequest.newBuilder(URI.create(url))
-				.GET()
+				+ "?access_token=" + token//
+				+ "&openid=" + openId//
+				+ "&lang=zh_CN";
+
+		HttpRequest request = HttpRequest.newBuilder(URI.create(url))//
+				.GET()// 以GET方式请求
 				.build();
 		try {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString(Charset.forName("UTF-8")));
