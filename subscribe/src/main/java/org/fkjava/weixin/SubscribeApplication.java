@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootApplication
 @ComponentScan("org.fkjava")
 @EnableJpaRepositories("org.fkjava")
-@EntityScan("org.java")
+@EntityScan("org.fkjava")
 public class SubscribeApplication implements //
 		EventListenerConfig, //
 		// 得到Spring的容器
