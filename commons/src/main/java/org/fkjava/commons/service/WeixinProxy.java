@@ -35,13 +35,10 @@ public class WeixinProxy {
 
 	public User getUser(String account, String openId) {
 		String token = this.tokenManager.getToken(account);
-		String url = "https://api.weixin.qq.com/cgi-bin/user/info"//
-				+ "?access_token=" + token//
-				+ "&openid=" + openId//
-				+ "&lang=zh_CN";
+		String url = "https://api.weixin.qq.com/cgi-bin/user/info"+"?access_token="+ token+ "&openid=" + openId+ "&lang=zh_CN";
 
-		HttpRequest request = HttpRequest.newBuilder(URI.create(url))//
-				.GET()// 以GET方式请求
+		HttpRequest request = HttpRequest.newBuilder(URI.create(url))
+				.GET()
 				.build();
 		try {
 			HttpResponse<String> response = client.send(request, BodyHandlers.ofString(Charset.forName("UTF-8")));
