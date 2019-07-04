@@ -1,5 +1,6 @@
 package org.fkjava.commons.service;
 
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpClient.Version;
@@ -98,8 +99,8 @@ public class TokenManagerImpl implements TokenManager {
 		// 实际项目绝对不能这样干，因为获取令牌的接口每天最多能够调用2000次（每个appid）。
 		// 这里现在暂时为了简化而不考虑缓存，后面会进行重构。
 
-		String appid = "wx47c5755ac19cc44f";
-		String appsecret = "506fd3108ed89c97f09836bb0e33addd";
+		String appid = "wx2489e496a9b09a40";
+		String appsecret = "d1294152afe22b581a41563440ae1bb8";
 
 		String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential"//
 				+ "&appid=" + appid//
