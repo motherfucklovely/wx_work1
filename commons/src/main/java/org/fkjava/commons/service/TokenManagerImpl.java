@@ -20,7 +20,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.BoundValueOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -102,7 +101,7 @@ public class TokenManagerImpl implements TokenManager {
 		String appid = "wx47c5755ac19cc44f";
 		String appsecret = "506fd3108ed89c97f09836bb0e33addd";
 
-		String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential"+ "&appid=" + appid+ "&secret=" + appsecret;
+		String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential" + "&appid=" + appid+ "&secret="  + appsecret;
 
 		HttpClient hc = HttpClient.newBuilder()//
 				.version(Version.HTTP_1_1)// HTTP的协议版本号
@@ -131,9 +130,9 @@ public class TokenManagerImpl implements TokenManager {
 				rm = objectMapper.readValue(body, ResponseToken.class);
 				rm.setStatus(1);
 			}
-			// return rm;
+			
 			if (rm.getStatus() == 1) {
-				// return ((ResponseToken) rm).getAccessToken();
+		
 				return ((ResponseToken) rm);
 			}
 		} catch (Exception e) {
