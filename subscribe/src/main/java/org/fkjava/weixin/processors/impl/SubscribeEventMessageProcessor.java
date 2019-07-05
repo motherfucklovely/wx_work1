@@ -1,5 +1,6 @@
 package org.fkjava.weixin.processors.impl;
 
+
 import org.fkjava.commons.domain.User;
 import org.fkjava.commons.domain.event.EventInMessage;
 import org.fkjava.commons.processors.EventMessageProcessor;
